@@ -29,4 +29,31 @@ class GuestService
     {
         return $this->guestExternalApiRepository->create($data);
     }
+    
+    /**
+     * getGuestById
+     *
+     * @param  int $id
+     * @return array
+     */
+    public function getGuestById(int $id): ?array
+    {
+        return $this->guestExternalApiRepository->getById($id);
+    }
+    
+    /**
+     * updateGuest
+     *
+     * @param  int $id
+     * @param  array $data
+     * @return bool
+     */
+    public function updateGuest(int $id, array $data): bool
+    {
+        if(!$this->guestExternalApiRepository->update($id, $data)) {
+            throw new \Exception('Failed to update guest');
+        }
+        
+        return true;
+    }
 }

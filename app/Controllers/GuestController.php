@@ -56,4 +56,44 @@ class GuestController extends BaseController
         }
     }
 
+    public function edit($id)
+    {
+        $guest = $this->guestService->getGuestById($id);
+
+        if (!$guest) {
+            return redirect()->to('/guests')->with('error', 'Guest not found.');
+        }
+
+        return view('guests/form', [
+            'title' => 'Edit Guest',
+            'guest' => $guest,
+            'action' => site_url('guests/update/' . $id),
+        ]);
+    }
+
+    public function update($id)
+    {
+        $validation = \Config\Services::validation();
+
+        if (!$this->validate([
+            'name' => 'required|min_length[3]',
+            'email' => 'required|valid_email',
+            'phone' => 'permit_empty|max_length[15]',
+        ])) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        try {
+            $this->guestService->updateGuest($id, [
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'phone' => $this->request->getPost('phone'),
+            ]);
+            
+            return redirect()->to('/guests')->with('success', 'Guest updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Failed to update guest, contact support.');
+        }
+    }
+
 }
