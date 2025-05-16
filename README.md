@@ -1,3 +1,44 @@
+# 🎉 Guest Management APP
+
+An application built with **CodeIgniter 4** to manage event guests.
+
+---
+
+## 🚀 Features
+
+- Create, list, update, and delete guests
+- Input validation (name and email)
+
+---
+
+## 🧱 Requirements
+
+- PHP 8.x
+- Composer
+- MySQL 5.7+
+- CodeIgniter 4.x
+
+## ⚙️ Installation
+
+1. Clone the repository:
+  ```bash
+    git clone https://github.com/orlando6644/guests-frontend.git
+    cd guests-frontend
+  ```
+2. Install dependencies:
+  ```bash
+    composer install
+  ```
+3. Configure environment:
+- Copy env example file to .env and set the GUEST_API_URL variable to use the external API service.
+  ```bash
+    GUEST_API_URL = http://localhost:8080/api/guests
+  ```
+4. Start the local development server:
+  ```bash
+    php spark serve
+  ```
+
 ## Server Requirements
 
 PHP version 8.1 or higher is required, with the following extensions installed:
