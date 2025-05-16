@@ -96,4 +96,20 @@ class GuestController extends BaseController
         }
     }
 
+    public function delete($id)
+    {
+        $guest = $this->guestService->getGuestById($id);
+
+        if (!$guest) {
+            return redirect()->to('/guests')->with('error', 'Guest not found.');
+        }
+
+        try {
+            $this->guestService->deleteGuest($id);
+            return redirect()->to('/guests')->with('success', 'Guest deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->to('/guests')->with('error', 'Failed to delete guest, contact support.');
+        }
+    }
+
 }

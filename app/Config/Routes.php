@@ -12,3 +12,4 @@ $routes->get('guests/create', 'GuestController::create');
 $routes->post('guests/store', 'GuestController::store');
 $routes->get('guests/edit/(:num)', 'GuestController::edit/$1');
 $routes->post('guests/update/(:num)', 'GuestController::update/$1');
+$routes->get('guests/delete/(:num)', 'GuestController::delete/$1');

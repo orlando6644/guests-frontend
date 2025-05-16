@@ -56,4 +56,19 @@ class GuestService
         
         return true;
     }
+    
+    /**
+     * deleteGuest
+     *
+     * @param  int $id
+     * @return bool
+     */
+    public function deleteGuest(int $id): bool
+    {
+        if(!$this->guestExternalApiRepository->delete($id)) {
+            throw new \Exception('Failed to delete guest');
+        }
+        
+        return true;
+    }
 }
